@@ -276,6 +276,10 @@ class WebviewManager {
         }
     }
 
+    String getCookies() {
+        return CookieManager.getInstance().getCookie(webView.getUrl());
+    }
+
     void resize(FrameLayout.LayoutParams params) {
         webView.setLayoutParams(params);
     }

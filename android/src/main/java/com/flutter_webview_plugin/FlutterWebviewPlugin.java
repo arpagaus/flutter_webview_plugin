@@ -70,7 +70,10 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
                 break;
             case "stopLoading":
                 stopLoading(call, result);
-                break;				
+                break;
+            case "getCookies":
+                getCookies(call, result);
+                break;
             default:
                 result.notImplemented();
                 break;
@@ -144,7 +147,7 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
         }
     }
 
-    /** 
+    /**
     * Navigates back on the Webview.
     */
     private void back(MethodCall call, MethodChannel.Result result) {
@@ -152,7 +155,7 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
             webViewManager.back(call, result);
         }
     }
-    /** 
+    /**
     * Navigates forward on the Webview.
     */
     private void forward(MethodCall call, MethodChannel.Result result) {
@@ -161,7 +164,7 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
         }
     }
 
-    /** 
+    /**
     * Reloads the Webview.
     */
     private void reload(MethodCall call, MethodChannel.Result result) {
@@ -206,6 +209,13 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
     private void show(MethodCall call, final MethodChannel.Result result) {
         if (webViewManager != null) {
             webViewManager.show(call, result);
+        }
+    }
+
+    private void getCookies(MethodCall call, final MethodChannel.Result result) {
+        if (webViewManager != null) {
+            String cookiesString = webViewManager.getCookies();
+            result.success(cookiesString);
         }
     }
 
